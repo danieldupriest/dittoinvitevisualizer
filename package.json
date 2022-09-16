@@ -1,0 +1,19 @@
+{
+  "name": "dittoinvitevisualizer",
+  "version": "1.0.0",
+  "description": "This template should help get you started developing with Vue 3 in Vite.",
+  "main": "visualize.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieldupriest/dittoinvitevisualizer.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danieldupriest/dittoinvitevisualizer/issues"
+  },
+  "homepage": "https://github.com/danieldupriest/dittoinvitevisualizer#readme"
+}
