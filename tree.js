@@ -1,7 +1,9 @@
 const columnWidth = 24;
+const defaultCanvasWidth = 100;
+const defaultCanvasHeight = 100;
 
 class Canvas {
-  constructor(width = 300, height = 300) {
+  constructor(width = defaultCanvasWidth, height = defaultCanvasHeight) {
     this.canvas = []
     
     for (let y = 0; y < height; y++){
@@ -85,6 +87,24 @@ class TreeNode {
     this.name = name;
     this.children = [];
     this.fill = fill;
+    this.parent = null;
+  }
+
+  findRoot() {
+    let pointer = this;
+
+    if(pointer.parent) {
+      while(pointer.parent) pointer = pointer.parent;
+      return pointer;
+    }
+
+    return false;
+  }
+
+  setParent(node) {
+    this.parent = node;
+    if (this.formsParentCycle())
+      this.parent = null;
   }
 
   pad(text, width, fill = this.fill, left = true){
@@ -102,7 +122,7 @@ class TreeNode {
       childrenHeight += child.height();
     }
     
-    return Math.max(2, childrenHeight);
+    return Math.max(1, childrenHeight);
   }
 
   width() {
@@ -127,10 +147,10 @@ class TreeNode {
       // Draw lines and children
       for (const { x, y, node } of columnNodes) {
         // Draw node
-        if (!node.children.length) {
-          canvas.draw(node.toString(), x, y);
-          continue;
-        }
+        //if (!node.children.length) {
+        //   canvas.draw(node.toString(), x, y);
+        //   continue;
+        //}
 
         const nodeText = node.pad(node.toString(), levelWidth);
         canvas.draw(nodeText, x, y);
@@ -173,6 +193,32 @@ class TreeNode {
 
   addChild(child) {
     this.children.push(child);
+    if (this.formsChildCycle())
+      this.removeChild(child);
+  }
+
+  formsChildCycle(visited = null) {
+    if (!visited) visited = [];
+    if (visited.includes(this)) return true;
+    visited.push(this);
+    
+    for (const child of this.children) {
+      if (child.formsChildCycle(visited)) return true;
+    }
+    
+    return false;
+  }
+
+  formsParentCycle(visited = null) {
+    if (!visited) visited = [];
+    if (visited.includes(this)) return true;
+    visited.push(this);
+    
+    if (this.parent) {
+      if (this.parent.formsParentCycle(visited)) return true;
+    }
+    
+    return false;
   }
 
   removeChild(child) {
@@ -196,7 +242,7 @@ class Field extends TreeNode {
   }  
 
   toString() {
-    return ' ' + this.name;
+    return ' ' + this.name + ' ';
   }
 }
 
