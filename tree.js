@@ -146,12 +146,6 @@ class TreeNode {
 
       // Draw lines and children
       for (const { x, y, node } of columnNodes) {
-        // Draw node
-        //if (!node.children.length) {
-        //   canvas.draw(node.toString(), x, y);
-        //   continue;
-        //}
-
         const nodeText = node.pad(node.toString(), levelWidth);
         canvas.draw(nodeText, x, y);
 
