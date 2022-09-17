@@ -1,29 +1,9 @@
 # Ditto Invite Visualizer
 
-This template should help get you started developing with Vue 3 in Vite.
+Processes all user invitations to generate trees showing who invited who. It uses a TreeNode library I built which detects and avoids cyclical dependencies during construction. If your largest tree is bigger than 100x100 characters, you will probably want to increase the default canvas width or height in the `tree.js` file.
 
-## Recommended IDE Setup
+## Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+1. Clone repository
+2. In root directory, run npm i
+3. Copy config.js.sample to config.js and fill in the database instance info.
