@@ -5,5 +5,5 @@ Processes all user invitations to generate trees showing who invited who. It use
 ## Setup
 
 1. Clone repository
-2. In root directory, run npm i
-3. Copy config.js.sample to config.js and fill in the database instance info.
+2. In root directory, run `npm i`
+3. Copy `config.js.sample` to `config.js` and fill in the database instance info.
